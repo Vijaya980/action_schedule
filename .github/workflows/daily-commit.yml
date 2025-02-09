@@ -26,4 +26,10 @@ jobs:
         run: |
           git add last_run.txt
           git commit -m "Automated daily commit at $(date)" || echo "No changes to commit"
-          git push
+          
+      - name: Push Changes
+        env:
+         GITHUB_TOKEN: ${{ secrets.PAT }}  # Use the PAT
+        run: |
+            git remote set-url origin https://Vijaya980:${{ secrets.PAT }}@github.com/Vijaya980/action_schedule.git
+            git push origin main
